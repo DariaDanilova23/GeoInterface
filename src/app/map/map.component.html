@@ -1,0 +1,82 @@
+
+<!-- Main content -->
+<div class="h-100 d-flex">
+  <!-- Sidebar using Offcanvas for smaller screens -->
+  <div class="offcanvas overflow-auto offcanvas-start d-md-none block-style text-white" tabindex="-1" id="layerSidebar" aria-labelledby="layerSidebarLabel" style="background-color: #343a40;">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column p-0">
+      <!-- Vector Layers -->
+      <div>
+        <div class="layer-header p-2"><p class="text-white text-center">Векторные слои</p></div>
+        <app-layer-list [layers]="vectorLayers"></app-layer-list>
+      </div>
+      <!-- Raster Layers -->
+      <div>
+        <div class="layer-header p-2"><p class="text-white text-center">Растровые слои</p></div>
+        <app-layer-list [layers]="rasterLayers"></app-layer-list>
+      </div>
+      <!-- Personal Vector Layers -->
+      <div>
+        <div class="layer-header p-2"><p class="text-white text-center">Личные векторные слои</p></div>
+        <app-layer-list [layers]="personalVectorLayers"></app-layer-list>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar for larger screens (always visible) -->
+  <div class="col-md-3 sidebar d-none d-md-flex overflow-auto flex-column block-style p-0">
+    <!-- Same content as above, repeated for larger screens -->
+    <div>
+      <div class="layer-header py-3"><p class="text-white m-0 text-center">Векторные слои</p></div>
+      <app-layer-list [layers]="vectorLayers"></app-layer-list>
+    </div>
+    <div>
+      <div class="layer-header py-3"><p class="text-white m-0 text-center">Растровые слои</p></div>
+      <app-layer-list [layers]="rasterLayers"></app-layer-list>
+    </div>
+    <div>
+      <div class="layer-header py-3"><p class="text-white m-0 text-center">Личные векторные слои</p></div>
+      <app-layer-list [layers]="personalVectorLayers"></app-layer-list>
+    </div>
+  </div>
+
+  <!-- Map and Charts -->
+  <div class="col-md-9 w-100 col-sm-12 d-flex flex-column h-100">
+    <!-- Map and Tools -->
+    <div class="flex-grow-1 d-flex">
+      <div class="d-flex flex-column p-0 h-100 w-100">
+        <!-- Toolbar with Sidebar toggle button -->
+        <div class="toolbar text-white p-2 d-flex">
+          <button class="btn btn-outline-light d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#layerSidebar" aria-controls="layerSidebar">
+            <i class="bi bi-layers-fill"></i>
+          </button>
+          <app-ruler [map]="map"></app-ruler>
+          <app-search-data [vectorLayers]="combinedVectors" [map]="map" (dataFound)="handleData($event)" (buttonClick)="onControlButtonClick()" (geojsonLayerCreated)="onGeojsonLayerCreated($event)"></app-search-data>
+          <app-export-map [map]="map"></app-export-map>
+          <app-geolocation [map]="map"></app-geolocation>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map-container" class="map-container border flex-grow-1 position-relative">
+          <div id="map" class="map h-100" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"></div>
+          <app-mouse-position [map]="map" *ngIf="showMousePosition"></app-mouse-position>
+        </div>
+      </div>
+
+      <!--
+  <div class="charts col-3 block-style">
+    <h3>Расчёт индексов вегетации</h3>
+  </div>-->
+    </div>
+
+
+    <!-- Table Section -->
+    <div class="flex-shrink-1" *ngIf="attributeData && attributeData.length > 0" >
+      <div class="col-12 table-container bg-light overflow-auto" style="height:150px">
+        <app-attribute-table [data]="attributeData" [map]="map" [geojsonLayer]="geojsonLayer"></app-attribute-table>
+      </div>
+    </div>
+  </div>
+</div>

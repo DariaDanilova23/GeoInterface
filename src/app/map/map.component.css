@@ -1,0 +1,43 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.layer-header {
+  /*font-family: 'Inter', sans-serif;
+   font-weight: 100;
+  */
+}
+
+.row, .col-md-9, .col-md-3 {
+  height: 100%;
+}
+.toolbar {
+  background-color: #43525E
+}
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  height: 100%;
+}
+.layer-header {
+  background-color: #1F2D33;
+}
+
+.charts {
+  height: 100%;
+}
+
+.table-container {
+  height: auto;
+}
