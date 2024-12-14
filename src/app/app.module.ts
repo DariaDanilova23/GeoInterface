@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LogoutComponent } from './logout/logout.component'
+import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MousePositionComponent,
     RulerComponent,
     GeolocationComponent,
-    LogoutComponent,
+    AuthComponent,
     LayerListComponent,
     AttributeTableComponent,
     SearchDataComponent,
@@ -48,11 +48,13 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     provideAuth0({
       domain: 'dev-qkvu2gwk1shvhz5e.us.auth0.com',
-      clientId: 'GObS7L0cPc5Msotmr7a7sFnVfiLLkZmk',
+      clientId: 'dJp2f440fMu0WSwUrSV9JxHzkIahGZJy',
       authorizationParams: {
         redirect_uri: 'http://localhost:4200/map',
-        ui_locales: 'ru'
-      }
+        ui_locales: 'ru',
+        audience: 'https://dev-qkvu2gwk1shvhz5e.us.auth0.com/api/v2/',
+      },
+      cacheLocation: 'localstorage'
     }),
   ],
   bootstrap: [AppComponent],

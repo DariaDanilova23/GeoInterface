@@ -247,6 +247,6 @@ export class MapComponent implements OnInit {
   }
 
   onGeojsonLayerCreated(layer: VectorLayer<VectorSource>) {
-    this.geojsonLayer = layer; // Сохраняем слой
+    this.geojsonLayer = layer; 
   }
 }

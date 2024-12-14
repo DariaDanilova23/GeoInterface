@@ -36,8 +36,7 @@ export class ExportMapComponent {
       Array.prototype.forEach.call(
         this.map.getViewport().querySelectorAll('.ol-layer canvas, canvas.ol-layer'),
         (canvas: HTMLCanvasElement) => {
-          if (canvas.width > 0) {
-            // Проверяем прозрачность canvas
+          if (canvas.width > 0) { // Проверяем прозрачность canvas
             const opacity = canvas.style.opacity;
             mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
 

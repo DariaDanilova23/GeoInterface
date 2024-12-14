@@ -30,8 +30,8 @@ export class MousePositionComponent implements OnInit, AfterViewInit, OnDestroy 
   addMousePositionControl(): void {
     if (this.map) {
       this.mousePositionControl = new MousePosition({
-        coordinateFormat: createStringXY(4), // Format the coordinates to 4 decimal places
-        projection: 'EPSG:4326', // Display coordinates in EPSG:4326 (lon/lat)
+        coordinateFormat: createStringXY(4), 
+        projection: 'EPSG:4326', 
         className: 'custom-mouse-position',
         target: document.getElementById('mouse-position')||''
       });
